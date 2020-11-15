@@ -17,18 +17,18 @@ class MyCloseFriends extends StatelessWidget {
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(32),
-                child: _CartList(),
+                child: _CloseFriendsList(),
               ),
             ),
-            Divider(height: 4, color: Colors.black),
           ],
         ),
       ),
+      floatingActionButton: _deleteButton(),
     );
   }
 }
 
-class _CartList extends StatelessWidget {
+class _CloseFriendsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //var itemNameStyle = Theme.of(context).textTheme.headline6;
@@ -50,4 +50,21 @@ class _CartList extends StatelessWidget {
       ),
     );
   }
+}
+
+
+class _deleteButton extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    var closeFriends = context.watch<CloseFriendsModel>();
+
+    return FloatingActionButton(
+        onPressed: (){
+          closeFriends.removeAll();
+        },
+      backgroundColor: Colors.deepPurple,
+      child: Icon(Icons.delete_forever),
+    );
+  }
+
 }
